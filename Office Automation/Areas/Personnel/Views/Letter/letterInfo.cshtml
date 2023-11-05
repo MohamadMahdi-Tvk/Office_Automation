@@ -1,0 +1,37 @@
+﻿@model Office_Automation.Views.ViewModels.LetterViewModel
+@{
+    ViewBag.Title = "محتوای نامه";
+}
+
+<section class="col-8">
+
+    <div class="bg-gray text-center">
+        <h4>محتویات نامه</h4>
+        <div class="bg-white">
+            <table class="table table-bordered">
+                <tr>
+                    <td>از: </td>
+                    <td>موضوع نامه: @Model.Title</td>
+                    <td>نوع نامه: @Model.Type</td>
+                </tr>
+                <tr>
+                    <td>به: مدیریت آی تی و فناوری اطلاعات</td>
+                    <td>شماره نامه: @Model.Number</td>
+                    <td>تاریخ: @Model.SendDate</td>
+                </tr>
+            </table>
+            <div class="container text-justify main-content">
+                <p class="pb-2">
+                    @Model.LetterContent
+                </p>
+            </div>
+        </div>
+        <div class="pb-2">
+            <input type="button" class="btn btn-primary" id="Archive" name="Archive"
+                   value="پاسخ به نامه">
+            <input type="button" class="btn btn-primary" id="Archive" name="Archive"
+                   value="بایگانی نامه">
+        </div>
+    </div>
+</section>
+

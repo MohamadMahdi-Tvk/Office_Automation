@@ -1,0 +1,41 @@
+﻿@model IEnumerable<Office_Automation.Views.ViewModels.UserViewModel>
+
+@{
+    ViewBag.Title = "لیست پرسنل";
+    int count = 1;
+}
+
+<section class="col-8">
+    <div class="bg-gray text-center">
+        <h4>لیست پرسنل اداره</h4>
+        <div class="bg-white container">
+            <table class="table">
+                <tr class="fw-bold">
+                    <td>ردیف</td>
+                    <td>نام و نام خانوادگی</td>
+                    <td>شماره پرسنلی</td>
+                    <td>شغل کاربر</td>
+                    <td>تاریخ استخدام</td>
+                    <td>عملیات</td>
+
+                </tr>
+                @foreach (var user in Model)
+                {
+                    <tr>
+                        <td>@count</td>
+                        <td>@user.Name @user.Family</td>
+                        <td>@user.PersonnelID</td>
+                        <td>@user.Department.Name</td>
+                        <td>@user.StartingDate</td>
+                        <td>
+                            <a href="/Admin/Users/Edit/@user.UserId" class="btn btn-warning">ویرایش</a>
+                            <a href="/Admin/Users/Delete/@user.UserId" class="btn btn-danger">حذف</a>
+                        </td>
+                    </tr>
+                    count++;
+                } 
+            </table>
+        </div>
+    </div>
+</section>
+

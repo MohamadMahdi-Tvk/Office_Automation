@@ -1,0 +1,76 @@
+﻿@model Office_Automation.Views.ViewModels.UserViewModel
+
+@{
+    ViewBag.Title = "افزودن کاربر جدید";
+}
+
+<section class="col-8">
+    <div class="bg-gray text-center">
+        <h4>افزودن پرسنل جدید</h4>
+        <div class="bg-white container">
+            @using (Html.BeginForm("Create", "Users", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="row justify-content-start mt-2">
+
+                    <div class="col-4 m-3">
+                        <h6 class="text-left ml-1">لطفا مشخصات پرسنلی را با دقت تکمیل فرمائید:</h6>
+                        <input type="text" class="form-control m-1" name="Name" id="Name"
+                               placeholder="نام">
+                        @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                        <input type="text" class="form-control m-1" name="Family" id="Family"
+                               placeholder="نام خانوادگی">
+                        @Html.ValidationMessageFor(model => model.Family, "", new { @class = "text-danger" })
+                        <select name="Gender" id="Gender" class="form-control m-1">
+                            <option disabled selected>جنسیت...</option>
+                            <option value="true">مرد</option>
+                            <option value="false">زن</option>
+                        </select>
+                        @Html.ValidationMessageFor(model => model.Gender, "", new { @class = "text-danger" })
+                        <input placeholder="تاریخ تولد" name="BirthDate" class="form-control m-1"
+                               type="text" onfocus="(this.type='date')" onblur="(this.type='text')"
+                               id="BirthDate" />
+                        @Html.ValidationMessageFor(model => model.BirthDate, "", new { @class = "text-danger" })
+                        <input type="text" class="form-control m-1" name="PhoneNumber" id="PhoneNumber"
+                               placeholder="شماره موبایل">
+                        @Html.ValidationMessageFor(model => model.PhoneNumber, "", new { @class = "text-danger" })
+                        <input type="text" name="PersonnelID" id="PersonnelID" class="form-control m-1"
+                               placeholder="شماره پرسنلی">
+                        @Html.ValidationMessageFor(model => model.PersonnelID, "", new { @class = "text-danger" })
+                        <input placeholder="تاریخ استخدام" name="StartingDate" class="form-control m-1"
+                               type="text" onfocus="(this.type='date')" onblur="(this.type='text')"
+                               id="StartingDate" />
+                        @Html.ValidationMessageFor(model => model.StartingDate, "", new { @class = "text-danger" })
+                        <input type="password" class="form-control m-1" name="Password" id="Password"
+                               placeholder="رمز عبور">
+                        @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="col-3 m-3">
+                        <label class="form-label">انتخاب نقش کاربری</label>
+                        @Html.DropDownList("RoleId", null, htmlAttributes: new { @class = "form-control m-1" })
+                        @Html.ValidationMessageFor(model => model.RoleId, "", new { @class = "text-danger" })
+
+                        <label class="form-label mt-4">انتخاب دپارتمان</label>
+
+                        @Html.DropDownList("DepartmentId", null, htmlAttributes: new { @class = "form-control m-1" })
+                        @Html.ValidationMessageFor(model => model.RoleId, "", new { @class = "text-danger" })
+
+                    </div>
+                    <div class="col-3">
+                        <img src="~/Images/user.png" class="profile-img img-thumbnail mt-2" alt="user.png" id="newImagePreview">
+                        <input type="file" class="form-control m-1" name="ImageUpload"
+                               id="ImageUpload" onchange="imagePreview(this)">
+                        <p>لطفا عکس خود را با فرمت PNG  یا JPEG انتخاب نمائید</p>
+                        <input type="submit" class="form-control btn btn-success m-1" value="ثبت نام">
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</section>
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+<script src="~/Scripts/Site.js"></script>

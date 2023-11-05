@@ -1,0 +1,34 @@
+﻿@using System.Web.Optimization;
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/Css")
+    @Scripts.Render("~/Scripts/js")
+</head>
+<body class="rtl">
+
+
+    @Html.Action("UserInfo", "Dashboard")
+    <main class="container-fluid">
+        <div class="row">
+            @Html.Action("UserPanel", "Dashboard")
+            @RenderBody()
+        </div>
+    </main>
+
+    
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+
+    <script src="/ckeditor/ckeditor.js"></script>
+    <script src="/ckeditor/adapters/jquery.js"></script>
+    <script>
+        $(function () {
+            $('#Content').ckeditor();
+        });
+    </script>
+</body>
+</html>

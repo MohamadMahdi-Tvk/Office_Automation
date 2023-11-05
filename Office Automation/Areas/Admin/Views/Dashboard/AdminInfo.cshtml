@@ -1,0 +1,27 @@
+﻿@model Office_Automation.Views.ViewModels.UserViewModel
+
+<header class="container-fluid">
+    <section class="user-info  table-responsive">
+        <h4 class="text-center">پنل ادمین</h4>
+        <table class="table">
+            <tbody>
+                <tr>
+                    <td>نام و نام خانوادگی: </td>
+                    <td>@Model.Name @Model.Family</td>
+                    <td>شغل کاربر: </td>
+                    <td>@Model.Department.Name</td>
+                    <td>شماره پرسنلی: </td>
+                    <td>@Model.PersonnelID</td>
+                    <td>تاریخ تولد: </td>
+                    <td>@Model.BirthDate</td>
+                    <td>تاریخ استخدام: </td>
+                    <td>@Model.StartingDate</td>
+                    <td>تصویر کاربر فعال:</td>
+                    <td><img src="~/Images/@Model.ProfileImage" class="rounded-circle"></td>
+                </tr>
+            </tbody>
+
+        </table>
+    </section>
+
+</header>

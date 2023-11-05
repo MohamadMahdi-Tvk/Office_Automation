@@ -1,0 +1,30 @@
+﻿@model Office_Automation.Views.ViewModels.DepartmentViewModel
+
+@{
+    ViewBag.Title = "حذف دپارتمان";
+    string name = Model.Name;
+
+}
+
+<section class="col-8">
+    <div class="bg-gray text-center">
+
+        <div class="bg-white container mt-4 mb-4">
+
+            <h4 class="p-3">آیا از حذف @name مطمئن هستید؟ </h4>
+            <h5 class="p-3">توجه: در صورت حذف این دپارتمان تمامی اطلاعات آن بطور کامل حذف خواهد شد </h5>
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="form-actions no-color m-2">
+                    <input type="submit" value="حذف کاربر" class="btn btn-danger m-2" /> |
+                    @Html.ActionLink("بازگشت به لیست", "DepartmentList", null, new { @class = "btn btn-primary" })
+                </div>
+            }
+        </div>
+
+
+    </div>
+
+</section>

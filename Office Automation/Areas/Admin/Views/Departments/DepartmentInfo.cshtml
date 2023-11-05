@@ -1,0 +1,48 @@
+﻿@model Office_Automation.Views.ViewModels.DepartmentViewModel
+
+@{
+    ViewBag.Title = "مشخصات دپارتمان";
+    string name = Model.Name;
+}
+
+<section class="col-8">
+    <div class="bg-gray text-center">
+        <h4>دپارتمان @name</h4>
+        <div class="bg-white container pt-2">
+            <table class="table table-bordered">
+                <tr>
+
+                    <td>دپارتمان</td>
+                    <td>اطلاعات دپارتمان</td>
+                    <td>وضعیت</td>
+                </tr>
+                <tr>
+                    <td>@Html.DisplayFor(model => model.Name)</td>
+                    <td>
+                        @Html.DisplayFor(model => model.Info)
+                    </td>
+                    <td>
+                        @if (Model.IsActive)
+                        {
+                            <span>فعال</span>
+                        }
+                        else
+                        {
+                            <span>مسدود</span>
+                        }
+                        
+                    </td>
+                </tr>
+
+            </table>
+            <div class="m-2 p-3">
+                @Html.ActionLink("ویرایش دپارتمان", "Edit", new { id = Model.DepartmentId }, new { @class = "btn btn-warning" }) |
+                @Html.ActionLink("بازگشت به لیست", "DepartmentList", null, new { @class = "btn btn-primary" })
+
+            </div>
+        </div>
+
+    </div>
+
+</section>
+

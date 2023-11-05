@@ -1,0 +1,36 @@
+﻿@model IEnumerable<Office_Automation.Views.ViewModels.DepartmentViewModel>
+@{
+    ViewBag.Title = "لیست دپارتمان ها";
+}
+
+<section class="col-8">
+    <div class="bg-gray text-center">
+        <h4>لیست دپارتمان ها</h4>
+        <div class="bg-white container">
+            <table class="table">
+                <tr class="fw-bold">
+                    <td>آیدی</td>
+                    <td>نام دپارتمان</td>
+                    <td>عملیات</td>
+                </tr>
+                @foreach (var department in Model)
+                {
+                    <tr>
+                        <td>@department.DepartmentId</td>
+                        <td>@department.Name</td>
+                        <td>
+                            <a href="/Admin/Departments/DepartmentInfo/@department.DepartmentId" class="btn btn-info">اطلاعات بیشتر</a>
+                            <a href="/Admin/Departments/Edit/@department.DepartmentId" class="btn btn-warning">ویرایش</a>
+                            <a href="/Admin/Departments/Delete/@department.DepartmentId" class="btn btn-danger">حذف</a>
+
+                        </td>
+                    </tr>
+                    
+                }
+
+            </table>
+        </div>
+    </div>
+</section>
+
+

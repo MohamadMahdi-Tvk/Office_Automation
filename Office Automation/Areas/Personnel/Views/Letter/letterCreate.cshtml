@@ -1,0 +1,80 @@
+﻿@model Office_Automation.Views.ViewModels.LetterViewModel
+
+@{
+    ViewBag.Title = "ارسال نامه ی جدید";
+}
+
+<section class="col-8">
+    <div class="bg-gray text-center">
+        <h4>فرم ارسال نامه</h4>
+
+        <form class="form-group" action="letterCreate" method="post">
+            <div class="row d-flex justify-content-around mt-4">
+
+                <div class="col-6">
+                    <input type="text" class="form-control" disabled placeholder="@ViewBag.UserDepartment" />
+                    
+                </div>
+                <div class="col-3">
+                    <input type="text" name="Number" id="Number" class="form-control"
+                           placeholder="شماره نامه">
+                </div>
+            </div>
+            <div class="row d-flex justify-content-around mt-2">
+
+                <div class="col-6">
+                    
+                    @Html.DropDownList("DepartmentId", null, new { @class = "form-control" })
+                </div>
+                <div class="col-3">
+                    <select name="Type" id="Type" class="form-control">
+                        <option selected disabled>نوع نامه</option>
+                        <option value="عادی">عادی</option>
+                        <option value="محرمانه">محرمانه</option>
+                        <option value="اقدام فوری">اقدام فوری</option>
+                    </select>
+                </div>
+
+            </div>
+            <div class="row d-flex justify-content-around mt-2">
+
+                <div class="col-6">
+                    <input type="text" name="Title" id="Title" class="form-control"
+                           placeholder="موضوع: ">
+                </div>
+                @*<div class="col-3">
+
+                        <select name="letter-save" id="letter-save" class="form-control">
+                            <option selected disabled>ذخیره سازی در بایگانی</option>
+                            <option value="1">ذخیره شود</option>
+                            <option value="2">ذخیره نشود</option>
+                        </select>
+                    </div>*@
+            </div>
+            <div class="row d-flex justify-content-around mt-2 mr-2 ml-2">
+                <div class="col-11">
+                    <textarea name="LetterContent" id="LetterContent" class="form-control" cols="30"
+                              rows="15"></textarea>
+                </div>
+            </div>
+            <div class="row d-flex justify-content-center mt-3">
+                <div class="col-3">
+                    <input type="submit" class="form-control btn btn-success" value="ارسال نامه">
+                </div>
+                <div class="col-3">
+                    <input type="reset" class="form-control btn btn-primary" value="بازنویسی نامه">
+                </div>
+            </div>
+        </form>
+    </div>
+</section>
+
+<script src="/Scripts/jquery-1.10.2.min.js"></script>
+
+<script src="/ckeditor/ckeditor.js"></script>
+<script src="/ckeditor/adapters/jquery.js"></script>
+<script>
+    $(function () {
+        $('#LetterContent').ckeditor();
+    });
+</script>

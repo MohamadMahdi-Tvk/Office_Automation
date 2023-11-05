@@ -1,0 +1,51 @@
+﻿@model IEnumerable<Office_Automation.Views.ViewModels.LetterViewModel>
+@{
+    ViewBag.Title = "پنل کاربری";
+    int count = 1;
+}
+
+
+<section class="col-8">
+
+    <div class="bg-gray text-center">
+        <h4>نامه های دریافتی</h4>
+        <div class="bg-white">
+            <table class="table">
+                <tr class="fw-bold">
+                    <td>ردیف</td>
+                    <td>موضوع نامه</td>
+                    <td>ارسال کننده</td>
+                    <td>شماره نامه</td>
+                    <td>دریافت کننده</td>
+                    <td>عملیات</td>
+                </tr>
+
+                @foreach (var letter in Model)
+                {
+                    <tr>
+                        <td>@count</td>
+                        <td><a href="/Personnel/Letter/letterInfo/@letter.LetterId">@letter.Title</a></td>
+                        <td>@letter.SendDepartmentId</td>
+                        <td>@letter.Number</td>
+                        <td>@letter.department.Name</td>
+                    <td>
+                        <input type="button" class="btn btn-primary" id="Archive" name="Archive"
+                               value="بایگانی">
+                        <input type="button" class="btn btn-danger" id="Delete" name="Delete"
+                               value="حذف">
+                    </td>
+                </tr>
+                count++;
+            }
+            </table>
+        </div>
+        <ul class="d-flex justify-content-center m-2" dir="ltr">
+            <li class="active pr-2"><a href="#">1</a></li>
+            <li class="pr-2"><a href="#">2</a></li>
+            <li class="pr-2"><a href="#">3</a></li>
+            <li class="pr-2"><a href="#">4</a></li>
+            <li class="pr-2"><a href="#">5</a></li>
+
+        </ul>
+    </div>
+</section>

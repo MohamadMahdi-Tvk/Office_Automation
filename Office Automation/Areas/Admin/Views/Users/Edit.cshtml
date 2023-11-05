@@ -1,0 +1,181 @@
+﻿@model Office_Automation.Views.ViewModels.UserViewModel
+
+@{
+    ViewBag.Title = "ویرایش کاربر";
+    string name = Model.Name + " " + Model.Family;
+}
+
+
+<section class="col-8">
+    <div class="bg-gray text-center">
+        <h4>ویرایش پرسنل: @name</h4>
+        <div class="bg-white container">
+            @using (Html.BeginForm("Edit", "Users", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                @Html.HiddenFor(t => t.UserId)
+                @Html.HiddenFor(t => t.ProfileImage)
+                @Html.HiddenFor(t => t.RegisterDate)
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <table class="table text-center table-responsive">
+                    <tr>
+                        <th>@Html.LabelFor(model => model.Name)</th>
+                        <th>@Html.LabelFor(model => model.Family)</th>
+                        <th>@Html.LabelFor(model => model.BirthDate)</th>
+                        <th>@Html.LabelFor(model => model.Gender)</th>
+                        <th>@Html.LabelFor(model => model.PhoneNumber)</th>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="text" name="Name" id="Name" value="@Model.Name" class="form-control" />
+                            @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+
+                        </td>
+                        <td>
+                            <input type="text" name="Family" id="Family" value="@Model.Family" class="form-control" />
+                            @Html.ValidationMessageFor(model => model.Family, "", new { @class = "text-danger" })
+
+
+                        </td>
+                        <td>
+                            <input placeholder="تاریخ تولد" name="BirthDate" class="form-control m-1"
+                                   type="text" onfocus="(this.type='date')" onblur="(this.type='text')"
+                                   id="BirthDate" value="@Model.BirthDate" />
+                            @Html.ValidationMessageFor(model => model.BirthDate, "", new { @class = "text-danger" })
+
+                        </td>
+                        <td>
+                            <select name="Gender" id="Gender" class="form-control">
+                                @if (Model.Gender == true)
+                                {
+                                    <option value="true" selected>آقا</option>
+                                    <option value="false">خانم</option>
+                                }
+                                else
+                                {
+                                    <option value="true">آقا</option>
+                                    <option value="false" selected>خانم</option>
+                                }
+                            </select>
+                            @Html.ValidationMessageFor(model => model.Gender, "", new { @class = "text-danger" })
+
+
+                        </td>
+                        <td>
+
+                            <input type="text" name="PhoneNumber" id="PhoneNumber" value="@Model.PhoneNumber" class="form-control" />
+                            @Html.ValidationMessageFor(model => model.PhoneNumber, "", new { @class = "text-danger" })
+
+
+                        </td>
+                    </tr>
+                    <tr>
+
+                        <th>
+                            @Html.LabelFor(model => model.PersonnelID)
+                        </th>
+                        <th>
+                            @Html.LabelFor(model => model.StartingDate)
+                        </th>
+                        <th>
+                            @Html.LabelFor(model => model.Password)
+                        </th>
+                        <th>
+                            @Html.LabelFor(model => model.ProfileImage)
+                        </th>
+
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="text" name="PersonnelID" id="PersonnelID" value="@Model.PersonnelID" class="form-control" />
+                            @Html.ValidationMessageFor(model => model.PersonnelID, "", new { @class = "text-danger" })
+
+                        </td>
+                        <td>
+                            <input placeholder="تاریخ استخدام" name="StartingDate" class="form-control"
+                                   type="text" onfocus="(this.type='date')" onblur="(this.type='text')"
+                                   id="StartingDate" value="@Model.StartingDate" />
+                            @Html.ValidationMessageFor(model => model.StartingDate, "", new { @class = "text-danger" })
+
+                        </td>
+                        <td>
+                            <input type="password" name="Password" id="Password" value="@Model.Password" class="form-control" />
+                            @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+
+                        </td>
+                        <td>
+                            <input type="file" class="form-control" name="imageUpload"
+                                   id="imageUpload" onchange="imagePreview(this)" value="@Model.ProfileImage">
+                            @Html.ValidationMessageFor(model => model.ProfileImage, "", new { @class = "text-danger" })
+
+                        </td>
+                        <td>
+                            <img src="~/Images/@Model.ProfileImage" alt="@Model.Name" class="image-edit-profile" id="newImagePreview" />
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            @Html.LabelFor(model => model.IsActive)
+                        </th>
+                        <th>
+                            @Html.LabelFor(model => model.RoleId)
+                        </th>
+                        <th>
+                            @Html.LabelFor(model => model.DepartmentId)
+                        </th>
+                    </tr>
+                    <tr>
+                        <td>
+                            <select name="IsActive" id="IsActive" class="form-control">
+                                @if (Model.IsActive == true)
+                                {
+                                    <option value="true" selected class="text-success">فعال</option>
+                                    <option value="false" class="text-danger">مسدود</option>
+                                }
+                                else
+                                {
+                                    <option value="true" class="text-success">فعال</option>
+                                    <option value="false" selected class="text-danger">مسدود</option>
+                                }
+                            </select>
+                            @Html.ValidationMessageFor(model => model.IsActive, "", new { @class = "text-danger" })
+                        </td>
+                        <td>
+
+                            @Html.DropDownList("RoleId", null, htmlAttributes: new { @class = "form-control m-1" })
+                            @Html.ValidationMessageFor(model => model.RoleId, "", new { @class = "text-danger" })
+
+                        </td>
+                        <td>
+
+                            @Html.DropDownList("DepartmentId", null, htmlAttributes: new { @class = "form-control m-1" })
+                            @Html.ValidationMessageFor(model => model.RoleId, "", new { @class = "text-danger" })
+
+                        </td>
+
+                        <td>
+                            <div class="col-md-offset-2 col-md-10">
+                                <input type="submit" value="ذخیره اطلاعات" class="btn btn-warning" />
+                            </div>
+                        </td>
+
+                        <td>
+
+                            <div class="col-md-offset-2 col-md-10">
+                                <input type="button" value="بازگشت به لیست" class="btn btn-primary" onclick="location.href='/Admin/Users/Userslist'" />
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+
+
+            }
+        </div>
+    </div>
+</section>
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+<script src="~/Scripts/Site.js"></script>
