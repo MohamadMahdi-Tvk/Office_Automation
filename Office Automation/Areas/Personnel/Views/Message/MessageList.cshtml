@@ -1,0 +1,45 @@
+﻿@model IEnumerable<Office_Automation.Views.ViewModels.MessageViewModel>
+@{
+    ViewBag.Title = "پیام های شخصی";
+    int count = 1;
+}
+
+<section class="col-8">
+    <div class="bg-gray text-center">
+        <h4>پیام های دریافتی</h4>
+        <div class="bg-white">
+            <table class="table">
+                <tr class="fw-bold">
+                    <td>ردیف</td>
+                    <td>موضوع پیام</td>
+                    <td>ارسال کننده</td>
+                    <td>عملیات</td>
+                </tr>
+                @foreach (var message in Model)
+                {
+                    <tr>
+                        <td>@count</td>
+                        <td><a href="Show_letter.html">@message.MessageTitle</a></td>
+                        <td>@message.UserSendMessage
+                        
+                        
+                        </td>
+                        <td>
+                            <input type="button" class="btn btn-danger" id="Delete" name="Delete"
+                                   value="حذف">
+                        </td>
+                    </tr>
+                    count++;
+                }
+            </table>
+        </div>
+        <ul class="d-flex justify-content-center m-2" dir="ltr">
+            @for (int i = 1; i <= (ViewBag.PageCount) + 1; i++)
+            {
+                <li class="pr-2 @(((int)ViewBag.PageID==i)?"active":"")"><a href="/Personnel/Dashboard/ShowUnreadLetters?pageid=@i">@i</a></li>
+            }
+
+        </ul>
+    </div>
+</section>
+

@@ -361,3 +361,4 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+/Office Automation.ModelLayer/Migrations/202311042005063_CreateDb.cs

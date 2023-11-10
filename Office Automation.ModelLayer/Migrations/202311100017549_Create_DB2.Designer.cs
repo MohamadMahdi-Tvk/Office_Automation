@@ -7,13 +7,13 @@ namespace Office_Automation.ModelLayer.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.4")]
-    public sealed partial class CreateDb : IMigrationMetadata
+    public sealed partial class Create_DB2 : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(CreateDb));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(Create_DB2));
         
         string IMigrationMetadata.Id
         {
-            get { return "202311042005063_CreateDb"; }
+            get { return "202311100017549_Create_DB2"; }
         }
         
         string IMigrationMetadata.Source

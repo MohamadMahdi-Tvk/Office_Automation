@@ -1,7 +1,9 @@
 ﻿using CMSArticle.App_Start;
 using GSD.Globalization;
+using Office_Automation.ModelLayer.Context;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Threading;
 using System.Web;
@@ -22,6 +24,7 @@ namespace Office_Automation
             AutoMapperConfig.Configuration();
 
             BundleConfiguration.RegisterBundle(BundleTable.Bundles);
+
         }
 
         protected void Application_BeginRequest(object sender, EventArgs e)

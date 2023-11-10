@@ -26,6 +26,9 @@ namespace WebApplication1.App_Start
 
                 t.CreateMap<Letter, LetterViewModel>();
                 t.CreateMap<LetterViewModel, Letter>();
+
+                t.CreateMap<Message, MessageViewModel>();
+                t.CreateMap<MessageViewModel, Message>();
             });
 
             mapper = configuration.CreateMapper();

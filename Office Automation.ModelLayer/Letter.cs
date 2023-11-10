@@ -42,6 +42,8 @@ namespace Office_Automation.ModelLayer
         public string Type { get; set; }
 
 
+        public bool LetterVisit { get; set; }
+
 
         public virtual Department department { get; set; }
         public int DepartmentId { get; set; }

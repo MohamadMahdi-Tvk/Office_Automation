@@ -96,5 +96,7 @@ namespace Office_Automation.Views.ViewModels
         public int DepartmentId { get; set; }
 
         public virtual IEnumerable<Letter> letter { get; set; }
+
+        public virtual IEnumerable<Message> Messages { get; set; }
     }
 }

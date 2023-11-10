@@ -10,7 +10,7 @@
         <div class="bg-white">
             <table class="table table-bordered">
                 <tr>
-                    <td>از: </td>
+                    <td>از: @ViewBag.sendDepartmentName</td>
                     <td>موضوع نامه: @Model.Title</td>
                     <td>نوع نامه: @Model.Type</td>
                 </tr>
@@ -20,13 +20,13 @@
                     <td>تاریخ: @Model.SendDate</td>
                 </tr>
             </table>
-            <div class="container text-justify main-content">
+            <div class="container text-justify main-content pb-1">
                 <p class="pb-2">
-                    @Model.LetterContent
+                    @Html.Raw(Model.LetterContent)
                 </p>
             </div>
         </div>
-        <div class="pb-2">
+        <div class="p-2">
             <input type="button" class="btn btn-primary" id="Archive" name="Archive"
                    value="پاسخ به نامه">
             <input type="button" class="btn btn-primary" id="Archive" name="Archive"

@@ -1,0 +1,54 @@
+﻿@model Office_Automation.Views.ViewModels.MessageViewModel
+@{
+    ViewBag.Title = "ارسال پیام شخصی";
+}
+
+<section class="col-8">
+    <div class="bg-gray text-center">
+        <h4>ارسال پیام شخصی</h4>
+
+        <form class="form-group" action="SendMessage" method="post">
+            <div class="row d-flex justify-content-around mt-4">
+
+                <div class="col-6">
+                    <input type="text" disabled class="form-control"
+                           placeholder="از: @ViewBag.FullName ">
+                </div>
+                <div class="col-3">
+                    @Html.DropDownList("UserId", null, new { @class = "form-control" })
+                </div>
+            </div>
+            <div class="row d-flex justify-content-around mt-2">
+
+                <div class="col-6">
+                    <input type="text" name="MessageTitle" id="MessageTitle" class="form-control"
+                           placeholder="موضوع: ">
+                </div>
+                <div class="col-3">
+
+                </div>
+
+            </div>
+
+            <div class="row d-flex justify-content-around mt-2 mr-2 ml-2">
+                <div class="col-11">
+                    <textarea name="MessageContent" id="MessageContent" class="form-control" cols="30"
+                              rows="15" placeholder="متن پیام را در این قسمت بنویسید ..."></textarea>
+                </div>
+            </div>
+            <div class="row d-flex justify-content-center mt-3">
+                <div class="col-3">
+                    <input type="submit" class="form-control btn btn-success" value="ارسال پیام">
+                </div>
+                <div class="col-3">
+                    <input type="reset" class="form-control btn btn-primary" value="بازنویسی پیام">
+                </div>
+            </div>
+
+
+
+        </form>
+    </div>
+
+</section>
+

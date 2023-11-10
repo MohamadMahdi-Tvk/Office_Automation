@@ -13,5 +13,6 @@ namespace Office_Automation.ModelLayer.Context
         public DbSet<User> users { get; set; }
         public DbSet<Letter> letters { get; set; }
         public DbSet<Department> departments { get; set; }
+        public DbSet<Message> messages { get; set; }
     }
 }

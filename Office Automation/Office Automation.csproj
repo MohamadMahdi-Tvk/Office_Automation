@@ -1318,6 +1318,11 @@
     <Content Include="Areas\Personnel\Views\Dashboard\UserPanel.cshtml" />
     <Content Include="Areas\Personnel\Views\Letter\letterInfo.cshtml" />
     <Content Include="Areas\Personnel\Views\Letter\letterCreate.cshtml" />
+    <Content Include="Areas\Personnel\Views\Dashboard\ShowAllLetters.cshtml" />
+    <Content Include="Areas\Personnel\Views\Dashboard\ShowSendLetters.cshtml" />
+    <Content Include="Areas\Personnel\Views\Dashboard\ShowUnreadLetters.cshtml" />
+    <Content Include="Areas\Personnel\Views\Message\SendMessage.cshtml" />
+    <Content Include="Areas\Personnel\Views\Message\MessageList.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -1344,6 +1349,7 @@
     <Compile Include="Areas\Admin\Controllers\UsersController.cs" />
     <Compile Include="Areas\Personnel\Controllers\DashboardController.cs" />
     <Compile Include="Areas\Personnel\Controllers\LetterController.cs" />
+    <Compile Include="Areas\Personnel\Controllers\MessageController.cs" />
     <Compile Include="Areas\Personnel\PersonnelAreaRegistration.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
@@ -1354,6 +1360,7 @@
     <Compile Include="Views\ViewModels\AdminLoginViewModel.cs" />
     <Compile Include="Views\ViewModels\DepartmentViewModel.cs" />
     <Compile Include="Views\ViewModels\LetterViewModel.cs" />
+    <Compile Include="Views\ViewModels\MessageViewModel.cs" />
     <Compile Include="Views\ViewModels\PersonnelLoginViewModel.cs" />
     <Compile Include="Views\ViewModels\RoleViewModel.cs" />
     <Compile Include="Views\ViewModels\UserViewModel.cs" />

@@ -48,6 +48,11 @@ namespace Office_Automation.Views.ViewModels
         public string Type { get; set; }
 
 
+        [Display(Name = "بازدید نامه")]
+        public bool LetterVisit { get; set; }
+
+
+
         public virtual Department department { get; set; }
         public int DepartmentId { get; set; }
 

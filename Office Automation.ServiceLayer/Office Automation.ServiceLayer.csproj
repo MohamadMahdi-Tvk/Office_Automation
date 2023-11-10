@@ -56,9 +56,11 @@
     <Compile Include="IDepartmentService.cs" />
     <Compile Include="IEntityService.cs" />
     <Compile Include="ILetterService.cs" />
+    <Compile Include="IMessageService.cs" />
     <Compile Include="IRoleService.cs" />
     <Compile Include="IUserService.cs" />
     <Compile Include="LetterService.cs" />
+    <Compile Include="MessageService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RoleService.cs" />
     <Compile Include="UserService.cs" />

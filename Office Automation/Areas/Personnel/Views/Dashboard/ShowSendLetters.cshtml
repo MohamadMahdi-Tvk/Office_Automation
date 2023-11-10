@@ -1,14 +1,13 @@
 ﻿@model IEnumerable<Office_Automation.Views.ViewModels.LetterViewModel>
 @{
-    ViewBag.Title = "نامه های دریافتی";
+    ViewBag.Title = "نامه های ارسالی";
     int count = 1;
 }
-
 
 <section class="col-8">
 
     <div class="bg-gray text-center">
-        <h4>نامه های دریافتی</h4>
+        <h4>نامه های ارسالی</h4>
         <div class="bg-white">
             <table class="table">
                 <tr class="fw-bold">
@@ -25,9 +24,6 @@
                     <tr>
                         <td>@count</td>
                         <td><a href="/Personnel/Letter/letterInfo/@letter.LetterId">@letter.Title</a></td>
-
-
-
                         @switch (letter.SendDepartmentId)
                         {
                             case 1:
@@ -140,6 +136,7 @@
 
                         }
 
+
                         <td>@letter.Number</td>
                         <td>@letter.department.Name</td>
                         <td>
@@ -156,8 +153,10 @@
         <ul class="d-flex justify-content-center m-2" dir="ltr">
             @for (int i = 1; i <= (ViewBag.PageCount) + 1; i++)
             {
-                <li class="pr-2 @(((int)ViewBag.PageID==i)?"active":"")"><a href="/Personnel/Dashboard/Index?pageid=@i">@i</a></li>
+                <li class="pr-2 @(((int)ViewBag.PageID==i)?"active":"")"><a href="/Personnel/Dashboard/ShowSendLetters?pageid=@i">@i</a></li>
             }
         </ul>
     </div>
 </section>
+
+

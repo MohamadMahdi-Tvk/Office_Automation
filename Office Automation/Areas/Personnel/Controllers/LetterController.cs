@@ -34,7 +34,13 @@ namespace Office_Automation.Areas.Personnel.Controllers
             ViewBag.UserId = new SelectList(_userService.GetAll(), "UserId", "Name");
             ViewBag.DepartmentId = new SelectList(_departmentService.GetAll(), "DepartmentId", "Name");
             var letter = _letterService.GetEntity(id);
+            letter.LetterVisit = true;
+            _letterService.Update(letter);
+            _letterService.Save();
             var letterViewModel = AutoMapperConfig.mapper.Map<Letter, LetterViewModel>(letter);
+
+            ViewBag.sendDepartmentName = _departmentService.GetAll().FirstOrDefault(t => t.DepartmentId == letter.SendDepartmentId).Name;
+
             return View(letterViewModel);
         }
 
@@ -62,6 +68,7 @@ namespace Office_Automation.Areas.Personnel.Controllers
 
                 letter.SendDate = DateTime.Now;
                 letter.SendDepartmentId = userFind.DepartmentId;
+                letter.LetterVisit = false;
                 _letterService.Add(letter);
                 _letterService.Save();
                 return Redirect("/Personnel/Dashboard/Index");
@@ -74,6 +81,6 @@ namespace Office_Automation.Areas.Personnel.Controllers
             return View(letterViewModel);
         }
 
-
+       
     }
 }

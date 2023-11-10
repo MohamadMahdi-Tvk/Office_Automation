@@ -80,5 +80,9 @@ namespace Office_Automation.ModelLayer
 
         public virtual IEnumerable<Letter> letter { get; set; }
 
+
+        public virtual IEnumerable<Message> Messages { get; set; }
+
+
     }
 }

@@ -55,13 +55,14 @@
     <Compile Include="Context\OfficeAutomationContext.cs" />
     <Compile Include="Department.cs" />
     <Compile Include="Letter.cs" />
-    <Compile Include="Migrations\202311042005063_CreateDb.cs" />
-    <Compile Include="Migrations\202311042005063_CreateDb.designer.cs">
-      <DependentUpon>202311042005063_CreateDb.cs</DependentUpon>
+    <Compile Include="Message.cs" />
+    <Compile Include="Migrations\202311092328063_CreateDB.cs" />
+    <Compile Include="Migrations\202311092328063_CreateDB.designer.cs">
+      <DependentUpon>202311092328063_CreateDB.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202311042223365_CreateDb2.cs" />
-    <Compile Include="Migrations\202311042223365_CreateDb2.designer.cs">
-      <DependentUpon>202311042223365_CreateDb2.cs</DependentUpon>
+    <Compile Include="Migrations\202311100017549_Create_DB2.cs" />
+    <Compile Include="Migrations\202311100017549_Create_DB2.designer.cs">
+      <DependentUpon>202311100017549_Create_DB2.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -73,11 +74,11 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202311042005063_CreateDb.resx">
-      <DependentUpon>202311042005063_CreateDb.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202311092328063_CreateDB.resx">
+      <DependentUpon>202311092328063_CreateDB.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202311042223365_CreateDb2.resx">
-      <DependentUpon>202311042223365_CreateDb2.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202311100017549_Create_DB2.resx">
+      <DependentUpon>202311100017549_Create_DB2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
