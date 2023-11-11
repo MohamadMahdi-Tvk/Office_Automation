@@ -9,5 +9,6 @@ namespace Office_Automation.ServiceLayer
 {
     public interface IMessageService : IEntityService<Message>
     {
+       
     }
 }

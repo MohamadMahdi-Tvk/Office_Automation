@@ -1323,6 +1323,11 @@
     <Content Include="Areas\Personnel\Views\Dashboard\ShowUnreadLetters.cshtml" />
     <Content Include="Areas\Personnel\Views\Message\SendMessage.cshtml" />
     <Content Include="Areas\Personnel\Views\Message\MessageList.cshtml" />
+    <Content Include="Areas\Personnel\Views\Message\MessageInfo.cshtml" />
+    <Content Include="Areas\Personnel\Views\Letter\SearchIndex.cshtml" />
+    <Content Include="Areas\Personnel\Views\Letter\SearchResult.cshtml" />
+    <Content Include="Areas\Personnel\Views\Letter\Delete.cshtml" />
+    <Content Include="Areas\Personnel\Views\Letter\ShowSaveLetters.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -1393,11 +1398,9 @@
     <Content Include="Scripts\jquery-3.0.0.slim.min.map" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\_PFooter.cshtml" />
     <Content Include="Views\Shared\_PHeader.cshtml" />
     <Content Include="Views\Home\Login.cshtml" />
-    <Content Include="Views\Home\PersonnelLogin.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

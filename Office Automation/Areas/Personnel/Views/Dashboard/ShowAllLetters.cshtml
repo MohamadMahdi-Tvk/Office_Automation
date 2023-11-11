@@ -140,10 +140,16 @@
                         <td>@letter.Number</td>
                         <td>@letter.department.Name</td>
                         <td>
-                            <input type="button" class="btn btn-primary" id="Archive" name="Archive"
-                                   value="بایگانی">
-                            <input type="button" class="btn btn-danger" id="Delete" name="Delete"
-                                   value="حذف">
+                            @if (!letter.LetterSave)
+                            {
+                                @Html.ActionLink("بایگانی", "SaveLetter", "Letter", new { id = letter.LetterId }, new { @class = "btn btn-primary" })
+
+                            }
+                            else
+                            {
+                                @Html.ActionLink("حذف از بایگانی", "UnSaveLetter", "Letter", new { id = letter.LetterId }, new { @class = "btn btn-warning" })
+                            }
+                            @Html.ActionLink("حذف", "Delete", "Letter", new { id = letter.LetterId }, new { @class = "btn btn-danger" })
                         </td>
                     </tr>
                     count++;

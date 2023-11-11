@@ -9,5 +9,6 @@ namespace Office_Automation.ServiceLayer
 {
     public interface ILetterService : IEntityService<Letter>
     {
+        IEnumerable<Letter> SearchLetter(string search);
     }
 }

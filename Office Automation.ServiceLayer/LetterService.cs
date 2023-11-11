@@ -10,8 +10,15 @@ namespace Office_Automation.ServiceLayer
 {
     public class LetterService : EntityService<Letter>, ILetterService
     {
+        OfficeAutomationContext db;
         public LetterService(OfficeAutomationContext context) : base(context)
         {
+            db = new OfficeAutomationContext();
+        }
+
+        public IEnumerable<Letter> SearchLetter(string search)
+        {
+            return db.letters.Where(t => t.Title.Contains(search) || t.LetterContent.Contains(search) || t.Number.Contains(search)).Distinct();
         }
     }
 }

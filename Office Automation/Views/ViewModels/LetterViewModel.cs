@@ -51,8 +51,8 @@ namespace Office_Automation.Views.ViewModels
         [Display(Name = "بازدید نامه")]
         public bool LetterVisit { get; set; }
 
-
-
+        [Display(Name ="بایگانی نامه")]
+        public bool LetterSave { get; set; }
         public virtual Department department { get; set; }
         public int DepartmentId { get; set; }
 

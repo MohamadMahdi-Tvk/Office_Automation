@@ -25,6 +25,9 @@ namespace Office_Automation
 
             BundleConfiguration.RegisterBundle(BundleTable.Bundles);
 
+            ViewEngines.Engines.Clear();
+            ViewEngines.Engines.Add(new RazorViewEngine());
+
         }
 
         protected void Application_BeginRequest(object sender, EventArgs e)

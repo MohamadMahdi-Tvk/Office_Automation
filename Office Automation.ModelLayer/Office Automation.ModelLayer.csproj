@@ -64,6 +64,14 @@
     <Compile Include="Migrations\202311100017549_Create_DB2.designer.cs">
       <DependentUpon>202311100017549_Create_DB2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202311101153215_CreateDB3.cs" />
+    <Compile Include="Migrations\202311101153215_CreateDB3.designer.cs">
+      <DependentUpon>202311101153215_CreateDB3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202311102027245_CreateDb4.cs" />
+    <Compile Include="Migrations\202311102027245_CreateDb4.designer.cs">
+      <DependentUpon>202311102027245_CreateDb4.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Role.cs" />
@@ -79,6 +87,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202311100017549_Create_DB2.resx">
       <DependentUpon>202311100017549_Create_DB2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202311101153215_CreateDB3.resx">
+      <DependentUpon>202311101153215_CreateDB3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202311102027245_CreateDb4.resx">
+      <DependentUpon>202311102027245_CreateDb4.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

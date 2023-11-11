@@ -27,7 +27,7 @@ namespace Office_Automation.ModelLayer
 
 
         
-        public int UserSendMessage { get; set; }
+        public string UserSendMessage { get; set; }
 
 
         public virtual User User { get; set; }

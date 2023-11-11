@@ -29,7 +29,7 @@ namespace Office_Automation.Views.ViewModels
         public string MessageContent { get; set; }
 
         [Display(Name = "ارسال کننده پیام")]
-        public int UserSendMessage { get; set; }
+        public string UserSendMessage { get; set; }
 
 
         public virtual User User { get; set; }

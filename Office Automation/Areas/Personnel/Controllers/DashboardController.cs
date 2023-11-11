@@ -8,6 +8,7 @@ using System.Linq;
 using System.Web;
 using System.Web.ApplicationServices;
 using System.Web.Mvc;
+using System.Web.Security;
 using WebApplication1.App_Start;
 
 namespace Office_Automation.Areas.Personnel.Controllers
@@ -72,17 +73,17 @@ namespace Office_Automation.Areas.Personnel.Controllers
         public ActionResult ShowSendLetters(int pageid = 1)
         {
             var skip = (pageid - 1) * 8;
-            int count = _letterService.GetAll().Count();
 
             ViewBag.PageID = pageid;
-            ViewBag.PageCount = count / 8;
+
             ViewBag.departmentNames = _departmentService.GetAll().Select(t => t.Name).ToArray();
 
             var personnelId = User.Identity.Name;
             int userDepartmentId = _userService.GetAll().FirstOrDefault(t => t.PersonnelID == personnelId).DepartmentId;
 
-            var letter = _letterService.GetAll().Where(t => t.SendDepartmentId == userDepartmentId).Skip(skip).Take(8).ToList();
-
+            var letter = _letterService.GetAll().Where(t => t.SendDepartmentId == userDepartmentId).OrderByDescending(t => t.SendDate).Skip(skip).Take(8).ToList();
+            int count = _letterService.GetAll().Where(t => t.SendDepartmentId == userDepartmentId).Count();
+            ViewBag.PageCount = count / 8;
             var letterViewModel = AutoMapperConfig.mapper.Map<List<Letter>, List<LetterViewModel>>(letter);
 
             return View(letterViewModel);
@@ -133,9 +134,28 @@ namespace Office_Automation.Areas.Personnel.Controllers
             ViewBag.letterCountAll = _letterService.GetAll().Count();
             ViewBag.letterSendCount = _letterService.GetAll().Where(t => t.SendDepartmentId == userDepartmentId).Count();
             ViewBag.UnreadLettersCount = _letterService.GetAll().Where(t => t.LetterVisit == false && t.DepartmentId == userDepartmentId).Count();
-
+            ViewBag.SavedLettersCount = _letterService.GetAll().Where(t => t.LetterSave == true).Count();
             ViewBag.PrivateMessageCount = _messageService.GetAll().Where(t => t.UserId == userId).Count();
+
+            ViewBag.Admin = false;
+
+            var loginId = User.Identity.Name;
+
+            var loginAdmin = _userService.GetAll().FirstOrDefault(t => t.PersonnelID == loginId).RoleId;
+
+
+            if (loginAdmin == 1)
+            {
+                ViewBag.Admin = true;
+            }
+
             return PartialView();
+        }
+
+        public ActionResult SignOut()
+        {
+            FormsAuthentication.SignOut();
+            return Redirect("/");
         }
     }
 }

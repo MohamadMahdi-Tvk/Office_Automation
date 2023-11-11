@@ -12,7 +12,7 @@ using WebApplication1.App_Start;
 namespace Office_Automation.Areas.Admin.Controllers
 {
 
-    
+
     public class DashboardController : Controller
     {
         OfficeAutomationContext db = new OfficeAutomationContext();
@@ -46,9 +46,7 @@ namespace Office_Automation.Areas.Admin.Controllers
 
         public ActionResult AdminPanel()
         {
-
             return PartialView();
-
         }
 
         public ActionResult GeneralInfo()

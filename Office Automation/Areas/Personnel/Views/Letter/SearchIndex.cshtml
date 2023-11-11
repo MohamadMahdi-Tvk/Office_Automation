@@ -1,0 +1,18 @@
+﻿
+@{
+    ViewBag.Title = "جستجوی نامه";
+}
+
+<section class="col-8">
+    <div class="bg-gray text-center">
+        <h4>جستجو نامه ها</h4>
+        <div class="bg-white container pt-2 pb-2 d-flex justify-content-center">
+            <form class="form-group" method="get" action="SearchResult">
+                <h6 class="p-2">میتوانید عنوان،متن و شماره نامه را برای جستجو در این قسمت بنویسید...</h6>
+                <input class="form-control mb-3" type="text" name="q"
+                       placeholder="در این قسمت تایپ کنید..." size="30">
+                <button class="btn btn-success w-50 " type="submit">جستجو</button>
+            </form>
+        </div>
+    </div>
+</section>

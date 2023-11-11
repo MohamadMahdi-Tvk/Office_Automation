@@ -5,6 +5,7 @@ using Office_Automation.Views.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.UI.WebControls;
@@ -58,7 +59,7 @@ namespace Office_Automation.Areas.Personnel.Controllers
         }
 
         [HttpPost]
-        public ActionResult letterCreate([Bind(Include = "DepartmentId,Title,LetterContent,Number,Type")] LetterViewModel letterViewModel)
+        public ActionResult letterCreate([Bind(Include = "DepartmentId,Title,LetterContent,Number,Type,LetterSave")] LetterViewModel letterViewModel)
         {
             var userSend = User.Identity.Name;
             var userFind = _userService.GetAll().Single(t => t.PersonnelID == userSend);
@@ -81,6 +82,112 @@ namespace Office_Automation.Areas.Personnel.Controllers
             return View(letterViewModel);
         }
 
-       
+        public ActionResult SearchIndex()
+        {
+            return View();
+        }
+
+        public ActionResult SearchResult(string q, int pageid = 1)
+        {
+            ViewBag.Result = q;
+            var skip = (pageid - 1) * 8;
+
+            var letterFind = _letterService.SearchLetter(q).OrderByDescending(t => t.SendDate).Skip(skip).Take(8).ToList();
+            int count = letterFind.Count();
+
+            ViewBag.PageID = pageid;
+
+            ViewBag.PageCount = count / 8;
+            var letterViewModel = AutoMapperConfig.mapper.Map<List<Letter>, List<LetterViewModel>>(letterFind);
+
+            ViewBag.departmentNames = _departmentService.GetAll().Select(t => t.Name).ToArray();
+            return View(letterViewModel);
+        }
+
+
+        [HttpGet]
+        public ActionResult Delete(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            Letter letter = _letterService.GetEntity(id.Value);
+
+            if (letter == null)
+            {
+                return HttpNotFound();
+            }
+
+            var letterViewModel = AutoMapperConfig.mapper.Map<Letter, LetterViewModel>(letter);
+
+            return View(letterViewModel);
+        }
+
+
+        [HttpPost, ActionName("Delete")]
+        public ActionResult DeleteConfirm(int id)
+        {
+            Letter letter = _letterService.GetEntity(id);
+            _letterService.Delete(letter);
+            _letterService.Save();
+
+            return Redirect("/Personnel/Dashboard/Index");
+        }
+
+
+        public ActionResult SaveLetter(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            Letter letter = _letterService.GetEntity(id.Value);
+
+            if (letter == null)
+            {
+                return HttpNotFound();
+            }
+
+            letter.LetterSave = true;
+            _letterService.Update(letter);
+            _letterService.Save();
+            return Redirect(Request.UrlReferrer.ToString());
+        }
+
+        public ActionResult UnSaveLetter(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            Letter letter = _letterService.GetEntity(id.Value);
+
+            if (letter == null)
+            {
+                return HttpNotFound();
+            }
+
+            letter.LetterSave = false;
+            _letterService.Update(letter);
+            _letterService.Save();
+            return Redirect(Request.UrlReferrer.ToString());
+        }
+
+        public ActionResult ShowSaveLetters(int pageid = 1)
+        {
+            var skip = (pageid - 1) * 8;
+            var letters = _letterService.GetAll().Where(t => t.LetterSave).OrderByDescending(t=>t.SendDate).Skip(skip).Take(8).ToList();
+
+            int count = _letterService.GetAll().Where(t => t.LetterSave).Count();
+            ViewBag.PageID = pageid;
+            ViewBag.PageCount = count / 8;
+            var lettersViewModel = AutoMapperConfig.mapper.Map<List<Letter>, List<LetterViewModel>>(letters);
+            ViewBag.departmentNames = _departmentService.GetAll().Select(t => t.Name).ToArray();
+            return View(lettersViewModel);
+        }
     }
 }

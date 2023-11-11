@@ -27,10 +27,17 @@
             </div>
         </div>
         <div class="p-2">
-            <input type="button" class="btn btn-primary" id="Archive" name="Archive"
-                   value="پاسخ به نامه">
-            <input type="button" class="btn btn-primary" id="Archive" name="Archive"
-                   value="بایگانی نامه">
+            @Html.ActionLink("پاسخ به نامه", "letterCreate", "Letter", null, new { @class = "btn btn-primary" })
+
+            @if (!Model.LetterSave)
+            {
+                @Html.ActionLink("بایگانی", "SaveLetter", "Letter", new { id = Model.LetterId }, new { @class = "btn btn-primary" })
+
+            }
+            else
+            {
+                @Html.ActionLink("حذف از بایگانی", "UnSaveLetter", "Letter", new { id = Model.LetterId }, new { @class = "btn btn-warning" })
+            }
         </div>
     </div>
 </section>

@@ -20,10 +20,7 @@ namespace Office_Automation.Controllers
             _userService = new UserService(db);
         }
 
-        public ActionResult Index()
-        {
-            return View();
-        }
+       
 
         [HttpGet]
         public ActionResult Login(string returnUrl = "/")
@@ -43,7 +40,7 @@ namespace Office_Automation.Controllers
         {
             if (ModelState.IsValid)
             {
-                var admin = _userService.GetAll().FirstOrDefault(t => t.PersonnelID == adminLoginViewModel.PersonnelID && t.Password == adminLoginViewModel.Password && t.RoleId == 1);
+                var admin = _userService.GetAll().FirstOrDefault(t => t.PersonnelID == adminLoginViewModel.PersonnelID && t.Password == adminLoginViewModel.Password);
                 if (admin != null)
                 {
                     FormsAuthentication.SetAuthCookie(adminLoginViewModel.PersonnelID, false);
@@ -53,7 +50,7 @@ namespace Office_Automation.Controllers
                         adminLoginViewModel.ReturnUrl = "/";
                     }
 
-                    return Redirect(adminLoginViewModel.ReturnUrl);
+                    return Redirect("/Personnel/Dashboard");
 
                 }
                 ModelState.AddModelError("Password", "شماره پرسنلی و یا رمز عبور شما صحیح نیست");
@@ -69,50 +66,6 @@ namespace Office_Automation.Controllers
         }
 
 
-        [HttpGet]
-        public ActionResult PersonnelLogin(string returnUrl = "/")
-        {
-            PersonnelLoginViewModel personnelLoginViewModel = new PersonnelLoginViewModel()
-            {
-                ReturnUrl = returnUrl
-            };
-
-            return View(personnelLoginViewModel);
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult PersonnelLogin([Bind(Include = "PersonnelId,Password,ReturnUrl")] PersonnelLoginViewModel personnelLoginViewModel)
-        {
-            if (ModelState.IsValid)
-            {
-                var personnel = _userService.GetAll().FirstOrDefault(t => t.PersonnelID == personnelLoginViewModel.PersonnelID && t.Password == personnelLoginViewModel.Password);
-
-                if (personnel != null)
-                {
-                    if (personnel.RoleId == 2)
-                    {
-                        FormsAuthentication.SetAuthCookie(personnelLoginViewModel.PersonnelID, false);
-
-                        if (personnelLoginViewModel.ReturnUrl == null)
-                        {
-                            personnelLoginViewModel.ReturnUrl = "/";
-                        }
-
-                        return Redirect(personnelLoginViewModel.ReturnUrl);
-                    }
-                    else
-                    {
-                        ModelState.AddModelError("Password", "شما مجاز به ورود به این حساب نیستید");
-                    }
-                   
-                }
-                ModelState.AddModelError("Password", "شماره پرسنلی و یا رمز عبور شما صحیح نیست");
-                return View(personnelLoginViewModel);
-            }
-
-            return View(personnelLoginViewModel);
-        }
 
     }
 }

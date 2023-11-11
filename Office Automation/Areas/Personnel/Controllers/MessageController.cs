@@ -5,6 +5,7 @@ using Office_Automation.Views.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using System.Xml.Linq;
@@ -46,7 +47,7 @@ namespace Office_Automation.Areas.Personnel.Controllers
             {
                 var message = AutoMapperConfig.mapper.Map<MessageViewModel, Message>(messageViewModel);
 
-                message.UserSendMessage = userFind.UserId;
+                message.UserSendMessage = userFind.Name + " " + userFind.Family;
 
                 _messageService.Add(message);
                 _messageService.Save();
@@ -67,12 +68,48 @@ namespace Office_Automation.Areas.Personnel.Controllers
             ViewBag.PageID = pageid;
             ViewBag.PageCount = count / 8;
 
-            var message = _messageService.GetAll().Where(t => t.UserId == userFind.UserId).OrderByDescending(t => t.MessageId).Skip(skip).Take(8).ToList();
+            var message = _messageService.GetAll().ToList().Where(t => t.UserId == userFind.UserId).OrderByDescending(t => t.MessageId).Skip(skip).Take(8).ToList();
 
 
             var messageViewModel = AutoMapperConfig.mapper.Map<List<Message>, List<MessageViewModel>>(message);
 
+
+
             return View(messageViewModel);
+        }
+
+        public ActionResult MessageInfo(int id)
+        {
+
+            Message message = _messageService.GetEntity(id);
+
+            if (message == null)
+            {
+                return HttpNotFound();
+            }
+
+            var messageViewModel = AutoMapperConfig.mapper.Map<Message, MessageViewModel>(message);
+
+            return View(messageViewModel);
+        }
+
+        public ActionResult Delete(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            var message = _messageService.GetEntity(id.Value);
+
+            if (message == null)
+            {
+                return HttpNotFound();
+            }
+
+            _messageService.Delete(message);
+            _messageService.Save();
+            return RedirectToAction("MessageList");
         }
     }
 }

@@ -1,0 +1,29 @@
+﻿@model Office_Automation.Views.ViewModels.MessageViewModel
+@{
+    ViewBag.Title = "متن پیام";
+}
+
+<section class="col-8">
+
+    <div class="bg-gray text-center">
+        <h4>متن پیام</h4>
+        <div class="bg-white">
+            <table class="table table-bordered">
+                <tr>
+                    <td>از: @Model.UserSendMessage</td>
+                    <td>موضوع پیام: @Model.MessageTitle</td>
+                    
+                </tr>
+            </table>
+            <div class="container text-justify main-content pb-2">
+                <p class="">
+                    @Model.MessageContent
+                </p>
+            </div>
+        </div>
+        <div class="p-2">
+            @Html.ActionLink("ارسال پیام", "SendMessage",null,new {@class="btn btn-primary"})
+        </div>
+    </div>
+</section>
+

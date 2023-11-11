@@ -1,13 +1,13 @@
 ﻿@model IEnumerable<Office_Automation.Views.ViewModels.LetterViewModel>
 @{
-    ViewBag.Title = "نامه های ارسالی";
+    ViewBag.Title = "بایگانی نامه ها";
     int count = 1;
 }
 
 <section class="col-8">
 
     <div class="bg-gray text-center">
-        <h4>نامه های ارسالی</h4>
+        <h4>تمامی نامه ها</h4>
         <div class="bg-white">
             <table class="table">
                 <tr class="fw-bold">
@@ -159,10 +159,9 @@
         <ul class="d-flex justify-content-center m-2" dir="ltr">
             @for (int i = 1; i <= (ViewBag.PageCount) + 1; i++)
             {
-                <li class="pr-2 @(((int)ViewBag.PageID==i)?"active":"")"><a href="/Personnel/Dashboard/ShowSendLetters?pageid=@i">@i</a></li>
+                <li class="pr-2 @(((int)ViewBag.PageID==i)?"active":"")"><a href="/Personnel/Dashboard/ShowAllLetters?pageid=@i">@i</a></li>
             }
         </ul>
     </div>
 </section>
-
 

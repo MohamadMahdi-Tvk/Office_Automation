@@ -60,19 +60,29 @@
                 </li>
                 <hr class="bg-black">
                 <li>
-                    <a href="search_letter.html"
+                    <a href="/Personnel/Letter/SearchIndex"
                        class="list-group-item d-flex justify-content-between align-items-center">
                         جستجو نامه ها
                     </a>
                 </li>
                 <li>
-                    <a href="#"
+                    <a href="/Personnel/Letter/ShowSaveLetters"
                        class="list-group-item d-flex justify-content-between align-items-center">
-                        بایگانی نامه ها
+                        بایگانی نامه ها<span class="badge bg-primary rounded-pill">@ViewBag.SavedLettersCount</span>
                     </a>
                 </li>
+                <hr class="bg-black">
                 <li>
-                    <a href="#"
+                    @if (@ViewBag.Admin == true)
+                    {
+                        <a href="/Admin/Dashboard/Index"
+                           class="list-group-item d-flex justify-content-between align-items-center">
+                            رفتن به پنل ادمین
+                        </a>
+                    }
+                </li>
+                <li>
+                    <a href="/Personnel/Dashboard/SignOut"
                        class="list-group-item d-flex justify-content-between align-items-center">
                         خروج از حساب کاربری
                     </a>

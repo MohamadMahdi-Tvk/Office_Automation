@@ -6,7 +6,7 @@
 
 <section class="col-8">
     <div class="bg-gray text-center">
-        <h4>پیام های دریافتی</h4>
+        <h4>پیام های شخصی</h4>
         <div class="bg-white">
             <table class="table">
                 <tr class="fw-bold">
@@ -19,14 +19,12 @@
                 {
                     <tr>
                         <td>@count</td>
-                        <td><a href="Show_letter.html">@message.MessageTitle</a></td>
-                        <td>@message.UserSendMessage
-                        
-                        
+                        <td><a href="/Personnel/Message/MessageInfo/@message.MessageId">@message.MessageTitle</a></td>
+                        <td>
+                            @message.UserSendMessage
                         </td>
                         <td>
-                            <input type="button" class="btn btn-danger" id="Delete" name="Delete"
-                                   value="حذف">
+                            @Html.ActionLink("حذف", "Delete", "Message", new {id=message.MessageId},new {@class="btn btn-danger"})
                         </td>
                     </tr>
                     count++;
