@@ -13,6 +13,7 @@ using WebApplication1.App_Start;
 
 namespace Office_Automation.Areas.Personnel.Controllers
 {
+    [Authorize(Roles = "Admin,Personnel")]
     public class MessageController : Controller
     {
         OfficeAutomationContext db = new OfficeAutomationContext();

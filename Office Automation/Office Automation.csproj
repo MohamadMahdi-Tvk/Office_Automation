@@ -1360,6 +1360,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="OtherClasses\OfficeRoleProvider.cs" />
     <Compile Include="OtherClasses\PersianCulture.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Views\ViewModels\AdminLoginViewModel.cs" />

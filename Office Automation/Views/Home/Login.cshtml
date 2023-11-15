@@ -9,7 +9,7 @@
             <h3 class="p-3">فرم ورود</h3>
             <hr class="bg-black">
             <form action="/Home/Login" enctype="multipart/form-data" method="post" class="form-group">
-                @Html.ValidationSummary(true,"",new {@class="text-danger"})
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                 @Html.AntiForgeryToken()
                 <label class="form-label mt-2 h5">شماره پرسنلی</label>
                 <input type="text" class="form-control mt-2" name="PersonnelID" id="PersonnelID">
@@ -18,9 +18,15 @@
                 <label class="form-label mt-2 h5">رمز عبور</label>
                 <input type="password" name="Password" class="form-control mt-2" id="password">
                 @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
-                @Html.HiddenFor(model=>model.ReturnUrl)
+                @Html.HiddenFor(model => model.ReturnUrl)
                 <input type="submit" class="btn btn-success mt-4 p-2 w-50 font-weight-bold" value="ورود">
             </form>
+            @if (User.Identity.IsAuthenticated && Request.QueryString["ReturnUrl"] != null)
+            {
+                <div class="alert alert-danger">
+                    شما مجوز ورود به این بخش را ندارید
+                </div>
+            }
         </div>
     </div>
 </main>

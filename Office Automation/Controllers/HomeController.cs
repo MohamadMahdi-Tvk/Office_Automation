@@ -20,7 +20,7 @@ namespace Office_Automation.Controllers
             _userService = new UserService(db);
         }
 
-       
+
 
         [HttpGet]
         public ActionResult Login(string returnUrl = "/")
@@ -43,14 +43,16 @@ namespace Office_Automation.Controllers
                 var admin = _userService.GetAll().FirstOrDefault(t => t.PersonnelID == adminLoginViewModel.PersonnelID && t.Password == adminLoginViewModel.Password);
                 if (admin != null)
                 {
-                    FormsAuthentication.SetAuthCookie(adminLoginViewModel.PersonnelID, false);
-
-                    if (adminLoginViewModel.ReturnUrl == null)
+                    if (admin.RoleId == 1)
                     {
-                        adminLoginViewModel.ReturnUrl = "/";
+                        FormsAuthentication.SetAuthCookie(adminLoginViewModel.PersonnelID, false);
+                        return Redirect("/Admin/Dashboard");
                     }
-
-                    return Redirect("/Personnel/Dashboard");
+                    else
+                    {
+                        FormsAuthentication.SetAuthCookie(adminLoginViewModel.PersonnelID, false);
+                        return Redirect("/Personnel/Dashboard");
+                    }
 
                 }
                 ModelState.AddModelError("Password", "شماره پرسنلی و یا رمز عبور شما صحیح نیست");

@@ -11,8 +11,7 @@ using WebApplication1.App_Start;
 
 namespace Office_Automation.Areas.Admin.Controllers
 {
-
-
+    [Authorize(Roles = "Admin")]
     public class DashboardController : Controller
     {
         OfficeAutomationContext db = new OfficeAutomationContext();

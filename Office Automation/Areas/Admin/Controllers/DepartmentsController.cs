@@ -14,7 +14,7 @@ using WebApplication1.App_Start;
 namespace Office_Automation.Areas.Admin.Controllers
 {
 
-    
+    [Authorize(Roles = "Admin")]
     public class DepartmentsController : Controller
     {
         OfficeAutomationContext db = new OfficeAutomationContext();
